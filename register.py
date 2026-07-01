@@ -2,6 +2,7 @@ from tkinter import ttk
 from tkinter import Tk
 from tkinter import messagebox as messbox
 from createdb import add_users_into_database
+from auth import users_login
 
 root = Tk()
 root.geometry("500x500")
@@ -19,8 +20,14 @@ def add_users():
         messbox.showerror("Error!", f"Error 404\n{ex})")
 
 
+def auth_users():
+    root.destroy()
+    users_login()
+
 button = ttk.Button(root,text="add", command=add_users)
+button_auth = ttk.Button(root, text="autorization", command=auth_users, padding=5)
 login_entry.grid(row=0, column=0,pady=5)
 password_entry.grid(row=1, column=0, pady=5)
 button.grid(row=2, column=0,pady=5)
+button_auth.grid(row=3,column=0,pady=5)
 root.mainloop()

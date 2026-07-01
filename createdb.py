@@ -11,8 +11,17 @@ def create_users():
                     )
     """
                 )
+    
 def add_users_into_database(login,password):
     cursor.execute("""
     INSERT INTO users(login,password) VALUES(?,?)
 """, (login,password))
     conn.commit()
+    
+def find_users_in_database(login,password):
+    cursor.execute("""
+    SELECT id FROM users WHERE login = ? AND password = ?
+""", (login,password))
+    users_id = cursor.fetchone()
+    conn.close()
+    return users_id is not None
